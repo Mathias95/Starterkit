@@ -8,7 +8,7 @@ var gulp                = require('gulp'),
     plumber             = require('gulp-plumber'),
     clean               = require('gulp-clean'),
     sourcemaps          = require('gulp-sourcemaps'),
-    htmlmin             = require('gulp-html-minifier'),
+    htmlmin             = require('gulp-htmlmin'),
     imagemin            = require('gulp-imagemin'),
     browserSync         = require('browser-sync');
 
@@ -17,9 +17,7 @@ var src                 = './src/',
 
 //HTML MINIFY
 gulp.task('html', function(){
-    gulp.src(dist + '*.html',{force: true})
-        .pipe(clean());
-    gulp.src(src + '*.html')
+    return gulp.src(src + '*.html')
         .pipe(htmlmin({collapseWhitespace: true}))
         .pipe(gulp.dest(dist))
         .pipe(browserSync.stream());
